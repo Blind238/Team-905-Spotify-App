@@ -52,7 +52,7 @@ function ShowTrackData(){
         $('h1').replaceWith("<span class='error'>Er speeld niets!</span>");
     } else {
 		var track = playerTrackInfo.data;
-		$('h1').replaceWith("<h1> Track: "+ track.name + "<BR /> Album: " + track.album.name + " <BR />Artiets: " + track.album.artist.name + ". <BR /> URI/Locatie: " + track.uri + "</h1>");
+		$('h1').replaceWith("<h1> Track: "+ track.name + "<BR /> Album: " + track.album.name + " <BR />Artiest: " + track.album.artist.name + ". <BR /> URI/Locatie: " + track.uri + "</h1>");
 	}
 	
 }
