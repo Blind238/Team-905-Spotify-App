@@ -2,9 +2,9 @@ $(document).ready(Constructor);
 
 function Constructor()
 {
-    addToTimeline();
-    playTimeline();
-    subButton();
+    AddToTimeline();
+    PlayTimeline();
+    SubButton();
 }
 
 function AddToTimeline()
