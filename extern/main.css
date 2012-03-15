@@ -5,3 +5,20 @@
 	font-weight:BOLD;
 	font-size:18px;
 }
+
+.button{
+        float: right;
+        background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FF9900), to(#FF3300));   /* Safari 4-5, Chrome 1-9 */
+   	background: -webkit-linear-gradient(top, #FF9900, #FF3300);                         /* Safari 5.1, Chrome 10+ */
+        border: 2px solid;
+        border-radius: 15px;
+        height: 40px;
+        width: 150px;
+        text-align: center;
+        padding: 10px;
+}
+
+p{
+        color: #000000;
+        font-family: Arial, Helvetica, sans-serif;
+}
