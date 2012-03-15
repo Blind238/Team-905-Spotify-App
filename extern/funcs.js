@@ -27,6 +27,15 @@ function Constructor(){
 	CreatePlaylist();
 }
 
+function Get_User_ID(){
+	
+	var ID = models.session.anonymousUserID;
+	console.log(ID);
+	
+	//1eff2170818fec623bd7b270d3ee071def69026f
+	
+}
+
 function parseAgendaXML(xml)
 {
     //For testing purposes only, remove when done
