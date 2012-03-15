@@ -1,0 +1,16 @@
+{
+    "BundleType": "Application",
+    "AppIcon": {
+        "36x18": "test.png"
+    },
+    "AppName": {
+        "en": "Ultify!"
+    },
+    "SupportedLanguages": [
+        "en"
+    ]
+	"RequiredPermissions": [
+        "http://*.bayonet.nl",
+        "http://student.cmi.hro.nl"
+    ]
+}
