@@ -13,7 +13,43 @@ function Constructor(){
 	CurrentSongData();
 	ShowTrackData();
 	Squares();
+        //The following is a function that loads an XML
+        $.get
+    (
+        'http://student.cmi.hro.nl/0851729/imp3/weekopdracht1/agenda.php',
+        //'/imp3/weekopdracht1/agenda.php',
+        {},
+        parseAgendaXML,
+        "xml"
+    );
+        //Creates a playlist from URI
+        // (in this case it's kind of a loop)
+	CreatePlaylist();
+}
+
+function parseAgendaXML(xml)
+{
+    //For testing purposes only, remove when done
+    console.log("parseAgendaXML called");
+    $(xml).find("afspraak").each(function(){
+        var result = $(this).find("dag").text();
+        $("h2").append(result);
+    });
+}
+
+function CreatePlaylist(){
 	
+	//spotify:user:1117535795:playlist:59nkn5pKC1SMtRr5mG2JPm
+	var playlist = new m.Playlist.fromURI('http://open.spotify.com/user/1117535795/playlist/59nkn5pKC1SMtRr5mG2JPm');
+	playlist.subscribed = true;
+	console.log(playlist.name);
+	var PlayList = playlist.tracks;
+	console.log(PlayList.length)
+	var Lengte = PlayList.length;
+	
+	for( i=0; i < Lengte;i++){
+		console.log(PlayList[i].data.name);
+	}
 }
 
 function Test(){
