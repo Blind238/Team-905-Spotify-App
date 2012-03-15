@@ -8,8 +8,8 @@
     },
     "SupportedLanguages": [
         "en"
-    ]
-	"RequiredPermissions": [
+    ],
+    "RequiredPermissions": [
         "http://*.bayonet.nl",
         "http://student.cmi.hro.nl"
     ]
