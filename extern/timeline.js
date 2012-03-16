@@ -14,17 +14,17 @@ function Timeline()
     
     //Creates the basic timeline
     ctx.beginPath();
-    ctx.moveTo(30,100);
+    ctx.moveTo(0,100);
     ctx.lineTo(900,100);
     ctx.stroke();
     
     //Gets the number of entrys out of the database
-    var entrys = 4;
+    var entrys = 9;
     
     //Creates the various timeline entrys
     for(i = 0; i < entrys; i++)
     {
-        var spacing = i * 50;
+        var spacing = (900 / entrys) * i;
         
         ctx.beginPath();
         ctx.moveTo(spacing,10);
