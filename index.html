@@ -7,22 +7,36 @@
         <link rel="stylesheet" href="extern/main.css">
         <script type="text/javascript" src="extern/jquery-1.7.1.js"></script>
         <script type="text/javascript" src="extern/funcs.js"></script>
-        <!-- Blah2 -->
+        <script type="text/javascript" src="extern/buttons.js"></script>
+        <script type="text/javascript" src="extern/timeline.js"></script>
     </head>
     <body>
         <h1>tester</h1><BR />
-        <div class="button">
+        <div class="button" id="AddToTimeline">
             <p>
                 + Add To Timeline
             </p>
         </div>
-        <div class="button">
+        <div class="button" id="PlayTimeline">
             <p>
-                ? Play Timeline
+                &gt; Play Timeline
             </p>
         </div>
+        
         <input type='button' value='Play song' onClick='PlaySail()'><BR />
         <input type='button' value='Reload Page' onClick='ReloadPage()'><BR />
-        <canvas id="canvas" width="900" height="500"></canvas><br>
+        
+        <canvas id="canvas" width="900" height="300"></canvas><br>
+        
+        <form class="hide">
+            <textarea></textarea>
+            <div class="button" id="SubButton">
+                <p>
+                    Submit
+                </p>
+            </div>
+        </form>
+        
+        <canvas id="timeline" width="900" height="100"></canvas>
     </body>
 </html>
