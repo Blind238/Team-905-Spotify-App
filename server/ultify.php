@@ -11,9 +11,30 @@ $db = mysqli_connect($db_host, $db_user, $db_password, $db_database);
 
 if (isset($_GET['u']))
 {
-    $userid = $_GET['u'];
-    if (strlen($userid)==40)
+    $user_id = $_GET['u'];
+    if (strlen($user_id)==40)
     {
+        if (isset($_POST['submit']))
+        {
+            $ptrack_uri = $_POST['track'];
+            $pcomment = $_POST['comment'];
+            if (isset($_POST['time']))
+            {
+                $ptime = $_POST['time'];
+
+                $qinserttrack = "INSERT into ultify(user_id,track_uri,comment,time) 
+                                    VALUES('".$user_id."','".$ptrack_uri."','".$pcomment."','".$ptime."')";
+
+            $i_tr = mysqli_query($db,$qinserttrack) or die ('INSERT WITH TIME FAILED');
+            }
+            else 
+            {
+            $qinserttrack = "INSERT into ultify(user_id,track_uri,comment) 
+                                    VALUES('".$user_id."','".$ptrack_uri."','".$pcomment."')";
+
+            $i_tr = mysqli_query($db,$qinserttrack) or die ('INSERT WITHOUT TIME FAILED');
+            }
+        }
         //workaround for error on school server
         //it seems the school server sees <? as shorthand for <?php 
         //.... tsk tsk
@@ -22,10 +43,10 @@ if (isset($_GET['u']))
         <playlist>
             <?php
             //query all info from user_id 
-            $q_pl = "SELECT * from ultify WHERE user_id='$userid'";
-            $r_pl = mysqli_query($db, $q_pl) or die (' FUCKERDEFUCK');
+            $q_pl = "SELECT * from ultify WHERE user_id='$user_id'";
+            $r_pl = mysqli_query($db, $q_pl) or die ('QUERY PLAYLIST FAILED');
             //while there is an entry, show tracks per user
-            echo "<user_id>".$_GET['u']."</user_id>";
+            echo "<user_id>".$user_id."</user_id>";
             while ($tr = mysqli_fetch_assoc($r_pl))
             {?>
                 <track>
