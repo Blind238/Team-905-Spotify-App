@@ -8,36 +8,24 @@ $(document).ready(Constructor)
 
 function Constructor(){
 
-    console.log('Started');
-	Test();
+        console.log('Started: loading app.');
+	PlayerRefresh();
 	CurrentSongData();
 	ShowTrackData();
 	Squares();
+	Get_User_ID();
+	console.log('Finished: loading app.');
 }
 
-function Get_User_ID(){
-	
-	var ID = models.session.anonymousUserID;
-	console.log(ID);
-        // Get ID, give it forward :)
-	return ID;
-	//1eff2170818fec623bd7b270d3ee071def69026f
-	
-}
-
-function parseAgendaXML(xml)
-{
-    //For testing purposes only, remove when done
-    console.log("parseAgendaXML called");
-    $(xml).find("afspraak").each(function(){
-        var result = $(this).find("dag").text();
-        $("h2").append(result);
+function PlayerRefresh(){
+	player.observe(models.EVENT.CHANGE, function (e){
+			// Only update the page if the track changed
+			ReloadPage();
+			console.log('Started: PlayerRefresh');
     });
 }
 
 function CreatePlaylist(){
-	
-	//spotify:user:1117535795:playlist:59nkn5pKC1SMtRr5mG2JPm
 	var playlist = new m.Playlist.fromURI('http://open.spotify.com/user/1117535795/playlist/59nkn5pKC1SMtRr5mG2JPm');
 	playlist.subscribed = true;
 	console.log(playlist.name);
@@ -51,35 +39,29 @@ function CreatePlaylist(){
 }
 
 function Test(){
-	
-	console.log('test log');
-	
+	console.log('Started: Test');
 }
 
 function CurrentSongData(){
-	
-	var playerTrackInfo = player.track;
-	var track = playerTrackInfo.data;
-	console.log(track);
-	
+	console.log('Started: CurrentSongData');
+	var PlayerTrackInfo = player.track;
+	var Track = PlayerTrackInfo.data;
 }
 
 function CurrentPlaylist(){
-	
+	console.log('Started: CurrentPlaylist');
 	nummers[i] = array[i].data.uri;
 	console.log("nummers: " +nummers);
-	
 }
 
 function ReloadPage(){
-	
+	console.log('Started: ReloadPage');
 	window.location.reload();
 	console.log('Reloaded');
-	
 }
 
 function ShowTrackData(){
-	
+	console.log('Started: ShowTrackData');
 	var playerTrackInfo = player.track;
 
     if (playerTrackInfo == null) {
@@ -88,11 +70,10 @@ function ShowTrackData(){
 		var track = playerTrackInfo.data;
 		$('h2').replaceWith("<h2> Track: "+ track.name + "<BR /> Album: " + track.album.name + " <BR />Artiest: " + track.album.artist.name + ". <BR /> URI/Locatie: " + track.uri + "</h2>");
 	}
-	
 }
 
 function Squares(){
-	
+	console.log('Started: Squares');
 	var canvas = document.getElementById("canvas");
 	
 	if (canvas.getContext) {
@@ -112,19 +93,103 @@ function Squares(){
 		ctx.rect(350,50,100,100);
 		ctx.stroke();
 		console.log('Squared!');
-		
 	}
-	
 }
 
 function PlaySail(uri){
-	
-	//var uri = '5P4s9QfWPAuGk75xan87cX';
+	console.log('Started: PlaySail');
+	var uri = 'spotify:track:4VUGq8KUTVv5YnMqU6nkDa';
 	sp.trackPlayer.playTrackFromUri(uri, {
 		onSuccess: function() { console.log("success SONG");} ,
 		onFailure: function () { console.log("failure SONG");},
 		onComplete: function () { console.log("complete SONG"); }
     });
-	//spotify:track:5P4s9QfWPAuGk75xan87cX
+	
+}
+
+function Get_User_ID(){
+	
+	console.log('Started: Get_User_ID');
+	var ID = models.session.anonymousUserID;
+	console.log(ID);
+        return ID;
+}
+
+function Constructor_Playlist(){
+	
+	console.log('Started playlist constructor.');
+	GetPlaylist();
+	GetTracksPlaylist();
+	AddPlaylist();
+	RemoveTracks();
+	AddTracks();
+	console.log('Finished playlist constructor.');
+}
+
+function GetPlaylist(){
+	
+	console.log('Started: GetPlaylist');
+	var Playlist = new m.Playlist.fromURI('http://open.spotify.com/user/1117535795/playlist/59nkn5pKC1SMtRr5mG2JPm');
+	console.log('Got playlist: ' + Playlist.name);
+	return Playlist
+}
+
+function AddPlaylist(){
+	console.log('Started: AddPlaylist');
+	var Playlist = new m.Playlist.fromURI('http://open.spotify.com/user/1117535795/playlist/59nkn5pKC1SMtRr5mG2JPm');
+	Playlist.subscribed = true;
+	console.log('Playlist added to account');
+}
+
+function GetTracksPlaylist(){
+	
+	console.log('Started: GetTracksPlaylist');
+	var Playlist = GetPlaylist();
+	var Tracks = Playlist.tracks;
+}
+
+function RemoveTracks(){
+	console.log('Started: RemoveTracks');
+	var Playlist = GetPlaylist();
+	var Tracks = Playlist.tracks;
+	var TracksAmount = Tracks.length;
+
+	for (i=0;i<TracksAmount;i++){
+		var TrackURI = Tracks[i].data.uri;
+		Playlist.remove(TrackURI);
+	}	
+}
+
+function GetNewTracks(){
+	
+	console.log('Started: GetNewTracks');
+	
+	var NewTracks = ["4VUGq8KUTVv5YnMqU6nkDa","4d5QDE01i4iYVpPOfG6ho5","59OoFabb4932QQUqcY7awO"];
+	return NewTracks;
+	
+}
+
+function AddTracks(){
+	
+	console.log('Started: AddTracks');
+	
+	var NewTracks = GetNewTracks();
+	var Playlist = GetPlaylist();
+	var TracksAmount = NewTracks.length;
+	var i = 0;
+	
+	while (i<TracksAmount){
+		var TrackURI = NewTracks[i];
+		Playlist.add('spotify:track:' + TrackURI);
+		i++;
+	}
+	
+	console.log('Tracks added');
+	
+}
+
+function HelpMe(){
+	
+	
 	
 }
