@@ -43,7 +43,7 @@ if (isset($_GET['u']))
         <playlist>
             <?php
             //query all info from user_id 
-            $q_pl = "SELECT * from ultify WHERE user_id='$user_id'";
+            $q_pl = "SELECT * from ultify WHERE user_id='$user_id' ORDER BY time ASC";
             $r_pl = mysqli_query($db, $q_pl) or die ('QUERY PLAYLIST FAILED');
             //while there is an entry, show tracks per user
             echo "<user_id>".$user_id."</user_id>";
