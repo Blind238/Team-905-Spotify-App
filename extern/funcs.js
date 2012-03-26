@@ -113,6 +113,7 @@ function Get_User_ID(){
 	var ID = models.session.anonymousUserID;
 	console.log(ID);
         return ID;
+        console.log('Finished: Get_User_ID');
 }
 
 function Constructor_Playlist(){
