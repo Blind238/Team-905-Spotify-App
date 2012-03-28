@@ -5,6 +5,12 @@ function Constructor()
     AddToTimeline();
     PlayTimeline();
     SubButton();
+    
+    $("#ShowXML").click(function()
+        {
+            console.log('Started: ShowXML');
+            getPlaylistXML(Get_User_ID());
+        });
 }
 
 function AddToTimeline()
