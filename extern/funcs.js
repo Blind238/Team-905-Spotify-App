@@ -3,8 +3,9 @@ var models = sp.require('sp://import/scripts/api/models');
 var m = sp.require('sp://import/scripts/api/models');
 var player = models.player;
 var v = sp.require("sp://import/scripts/api/views");
+var xmlData;
 
-$(document).ready(Constructor)
+$(document).ready(Constructor);
 
 function Constructor(){
 
@@ -15,6 +16,18 @@ function Constructor(){
 	Squares();
 	Get_User_ID();
 	console.log('Finished: loading app.');
+        
+        $("h2").ajaxError(function(event,request,settings,error){
+            console.log("AJAX error:");
+            console.log("event:" + event);
+            console.log("request:" + request);
+            console.log("settings:"+ settings);
+            if (error != null)
+            {
+                console.log("error:" + error);
+            }
+            console.log("AJAX error end.");
+        });
 }
 
 function PlayerRefresh(){
@@ -188,6 +201,49 @@ function AddTracks(){
 	console.log('Tracks added');
 	
 }
+
+function getPlaylistXML(user_id,refresh){
+    // user_id is unique user and app identifier.
+    // refresh is passed if a the data needs to retrieved again
+    //  (after an INSERT or UPDATE)
+    console.log("Started: processPlaylistXML");
+    var base_url="http://student.cmi.hro.nl/0851729/prj3/ultify/ultify.php";
+    console.log("url: "+base_url);
+    console.log("refresh: "+refresh);
+    if (refresh == 1 || xmlData == undefined)
+    {
+        console.log("retreiving xml because:");
+        if (refresh==1)
+        {
+            console.log("refresh == 1.");
+        }
+        else if(xmlData== undefined)
+        {
+            console.log("xmlData == undefined.");
+        }
+        $.get
+        (
+            base_url,
+            {u:user_id},
+            processPlaylistXML,
+            "xml"
+        );
+    } 
+    else 
+    {
+        console.log("not refreshing");
+    }
+}
+
+function processPlaylistXML(xml){
+    var i=0
+    $(xml).find("comment").each(function(){
+        $("#timeline").append($(this).text()+i);
+        i++;
+    });
+}
+
+
 
 function HelpMe(){
 	
