@@ -286,10 +286,9 @@ function Timeline(xml)
         
         $("#timelineEntrys").append('<div class="timelineEntrys">'+
             trackName +
-            $(trackArtist).each(function(){
-                $.valueOf(this.data.name);
+            $.each(trackArtist,function(){
+                this.data.name;
                 console.log("TrackArtist: " +this.data.name);
-                //return name;
             }) + '</div>');
         $("#timelineEntrys").add('.timelineEntrys')
                             .css('margin-right', Entryspacing);
