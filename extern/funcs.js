@@ -243,6 +243,54 @@ function processPlaylistXML(xml){
     });
 }
 
+function Timeline(xml)
+{
+    console.log('Started: Timeline');
+    console.log(xml);
+    var timeline = document.getElementById("timeline");
+    var ctx = timeline.getContext("2d");
+    
+    //Creates the basic timeline
+    ctx.beginPath();
+    ctx.moveTo(0,100);
+    ctx.lineTo(800,100);
+    ctx.stroke();
+    
+    //Gets the number of entrys out of the database
+    var maxEntrys = 8;
+    var entrys = TracksAmount();
+    //Creates the various timeline entrys
+    //for(i = 0; i < entrys; i++)
+    var i=0;
+    $(xml).find("track").each(function()
+    {
+        console.log("Timeline: each function started");
+        var spacing = (800 / entrys) * i;
+        
+        ctx.beginPath();
+        ctx.moveTo(spacing,10);
+        ctx.lineTo(spacing,100);
+        ctx.stroke();
+        var Entryspacing = (800 / entrys) - 40;
+        var trackData = TrackData($(this).find("track_uri").text());
+        var trackName = trackData[0];
+        var trackArtist = trackData [1];
+        
+        $("#timelineEntrys").append('<div class="timelineEntrys">'+
+            trackName +
+            $(trackArtist).each(function(){
+                $.valueOf(this.data.name);
+                console.log("TrackArtist: " +this.data.name);
+                //return name;
+            }) + '</div>');
+        $("#timelineEntrys").add('.timelineEntrys')
+                            .css('margin-right', Entryspacing);
+        i++;
+        console.log("Timeline: each function stopped");
+        console.log("Timeline: each i :" + i);
+
+    });
+}
 
 
 function HelpMe(){
