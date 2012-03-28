@@ -15,6 +15,7 @@ function Constructor(){
 	ShowTrackData();
 	Squares();
 	Get_User_ID();
+        getPlaylistXML(Get_User_ID());
 	console.log('Finished: loading app.');
         
         $("h2").ajaxError(function(event,request,settings,error){
@@ -177,8 +178,13 @@ function RemoveTracks(){
 function GetNewTracks(){
 	
 	console.log('Started: GetNewTracks');
-	
-	var NewTracks = ["4VUGq8KUTVv5YnMqU6nkDa","4d5QDE01i4iYVpPOfG6ho5","59OoFabb4932QQUqcY7awO"];
+	var NewTracks = new Array();
+        $(xmlData).find("track_uri").each(function(){
+            NewTracks.push($(this).text());
+            console.log("Pushing to NewTracks: " +$(this).text());
+        });
+        
+	//var NewTracks = ["4VUGq8KUTVv5YnMqU6nkDa","4d5QDE01i4iYVpPOfG6ho5","59OoFabb4932QQUqcY7awO"];
 	return NewTracks;
 	
 }
@@ -189,10 +195,9 @@ function AddTracks(){
 	
 	var NewTracks = GetNewTracks();
 	var Playlist = GetPlaylist();
-	var TracksAmount = NewTracks.length;
 	var i = 0;
 	
-	while (i<TracksAmount){
+	while (i<TracksAmount()){
 		var TrackURI = NewTracks[i];
 		Playlist.add('spotify:track:' + TrackURI);
 		i++;
@@ -236,11 +241,14 @@ function getPlaylistXML(user_id,refresh){
 }
 
 function processPlaylistXML(xml){
+    console.log("AJAX call finished")
+    xmlData = xml;
     var i=0
     $(xml).find("comment").each(function(){
         $("#timeline").append($(this).text()+i);
         i++;
     });
+    Timeline(xml);
 }
 
 function Timeline(xml)
@@ -292,6 +300,25 @@ function Timeline(xml)
     });
 }
 
+function TrackData(track_uri){
+    var TrackData = new Array();
+    m.Track.fromURI("spotify:track:"+track_uri,function(track){
+        TrackData.push(track.name);
+        TrackData.push(track.artists);
+    });
+    console.log(TrackData);
+    return TrackData;
+}
+
+function TracksAmount(){
+    console.log("Started: TracksAmount");
+    var i = 0
+    $(xmlData).find("track").each(function(){
+        i++;
+    })
+    console.log("TracksAmount returns: "+i);
+    return i;
+}
 
 function HelpMe(){
 	
