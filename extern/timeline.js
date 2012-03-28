@@ -15,20 +15,26 @@ function Timeline()
     //Creates the basic timeline
     ctx.beginPath();
     ctx.moveTo(0,100);
-    ctx.lineTo(900,100);
+    ctx.lineTo(800,100);
     ctx.stroke();
     
     //Gets the number of entrys out of the database
-    var entrys = 9;
+    var entrys = 10;
     
     //Creates the various timeline entrys
     for(i = 0; i < entrys; i++)
     {
-        var spacing = (900 / entrys) * i;
+        var spacing = (800 / entrys) * i;
         
         ctx.beginPath();
         ctx.moveTo(spacing,10);
         ctx.lineTo(spacing,100);
         ctx.stroke();
+        
+        var Entryspacing = (800 / entrys) - 40;
+        
+        $("#timelineEntrys").append('<div class="timelineEntrys">test</div>');
+        $("#timelineEntrys").add('.timelineEntrys')
+                            .css('margin-right', Entryspacing);
     }
 }

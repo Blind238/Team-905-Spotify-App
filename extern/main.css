@@ -7,28 +7,62 @@
 }
 
 .button{
-        float: right;
-        clear: right;
         background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FF9900), to(#FF3300));   /* Safari 4-5, Chrome 1-9 */
    	background: -webkit-linear-gradient(top, #FF9900, #FF3300);                         /* Safari 5.1, Chrome 10+ */
-        border: 2px solid;
+        border: 1px solid;
         border-radius: 15px;
         height: 30px;
         width: 150px;
         text-align: center;
-        padding: 5px;
         margin: 5px;
+}
+
+.mainButton{
+        float: right;
+        clear: right;
+}
+
+.formButton{
+        float: left;
+}
+
+.form{
+        float: left;
+        clear: left;
+        margin-top: 50px;
+}
+
+.timelineEntrys{
+        float: left;
+        height: 40px;
+        width: 40px;
+}
+
+.hide{
+        display: none;
+}
+
+h1{
+        background: -webkit-gradient(linear, left top, left bottom, from(#FF9900), to(#FF3300));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+}
+
+h2{
+        float: left;
+        font-weight: 100;
+        font-size: 16px;
+        font-family: Arial, Helvetica, sans-serif;
 }
 
 p{
         color: #000000;
         font-family: Arial, Helvetica, sans-serif;
+        font-size: 14px;
+        margin: 8px;
 }
 
 canvas{
-    margin: 0 10px;
+        margin: 0 10px;
 }
 
-.hide{
-    display: none;
-}
