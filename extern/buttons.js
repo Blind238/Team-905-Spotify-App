@@ -5,12 +5,6 @@ function Constructor()
     AddToTimeline();
     PlayTimeline();
     SubButton();
-    
-    $("#ShowXML").click(function()
-        {
-            console.log('Started: ShowXML');
-            getPlaylistXML(Get_User_ID());
-        });
 }
 
 function AddToTimeline()
@@ -59,5 +53,9 @@ function SubButton()
 
 function PlayTimeline()
 {
-    console.log('Started: PlayTimeline');
+    $("#PlayTimeline").click(function()
+        {
+             console.log('Started: PlayTimeline');
+             Constructor_Playlist()
+        });
 }
