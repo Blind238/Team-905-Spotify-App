@@ -19,6 +19,8 @@ function AddToTimeline()
         {
             console.log('Started: AddToTimeline');
             $("#canvas").hide();
+            $("#timeline").hide();
+            $("#timelineEntrys").hide();
             $("form").show();
         });
 }
@@ -49,6 +51,8 @@ function SubButton()
         },
         "xml");
         $("#canvas").show();
+        $("#timeline").show();
+        $("#timelineEntrys").show();
         $("form").hide();
     });
 }
