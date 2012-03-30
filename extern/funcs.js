@@ -238,6 +238,7 @@ function getPlaylistXML(user_id,refresh){
     else 
     {
         console.log("not refreshing");
+        processPlaylistXML(xmlData);
     }
 }
 
