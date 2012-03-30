@@ -250,6 +250,7 @@ function processPlaylistXML(xml){
         $("#timeline").append($(this).text()+i);
         i++;
     });*/
+    createTimeline();
 }
 
 function createTimeline()
@@ -264,11 +265,14 @@ function createTimeline()
     ctx.moveTo(0,100);
     ctx.lineTo(800,100);
     ctx.stroke();
+    TrackData();
 }
     
 function createEntries()
 {
     var entrys = TracksAmount();
+    var timeline = document.getElementById("timeline");
+    var ctx = timeline.getContext("2d");
     
     for(i = 0; i < entrys; i++)
     {
