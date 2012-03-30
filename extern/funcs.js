@@ -289,28 +289,48 @@ function createEntries()
         $("#timelineEntrys").append
         (
             '<div class="timelineEntrys">'
-            + trackName + trackArtist + 
+            +  trackInfo[i][0] + trackInfo[i][1] +
             '</div>'
         );
             
         $("#timelineEntrys").add('.timelineEntrys')
                             .css('margin-right', Entryspacing);
         
-        i++;
-        
         console.log("createEntries:" + i);
     }
 }
 
-function TrackData(track_uri){
+function TrackData(){
+    // If length is bigger than 0, there's data in it.
+    // We need it to be empty
+    if (trackInfo.length>0){
+        trackInfo = [];
+    }
     var TrackData = new Array();
-    m.Track.fromURI("spotify:track:"+track_uri,function(track){
-        TrackData.push(track.name);
-        //TrackData.push(track.artists);
-        TrackData.push(track.album.artist);
-    });
-    console.log(TrackData);
-    return TrackData;
+    $(xmlData).find("track").each(function(){
+        var track_uri = $(this).find("track_uri").text();
+        m.Track.fromURI("spotify:track:"+track_uri,function(track){
+            CheckData(track.name,track.album.artist.name);
+            //TrackData.push(track.name);
+            //TrackData.push(track.artists);
+            //TrackData.push(track.album.artist);
+        });
+    })
+    //console.log(TrackData);
+    //return TrackData;
+}
+
+function CheckData(track,artist){
+    var temp = [track,artist];
+    trackInfo.push(temp);
+    console.log("trackInfo.length == " + trackInfo.length);
+    console.log("pushing " + temp);
+    if (trackInfo.length == TracksAmount()){
+        console.log("trackInfo.length is equal to TracksAmount")
+        createEntries();
+    } else if (trackInfo.length > TracksAmount()){
+        console.log("trackInfo.length is bigger than TracksAmount")
+    }
 }
 
 function TracksAmount(){
