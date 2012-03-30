@@ -16,6 +16,7 @@ function Constructor(){
 	Squares();
 	Get_User_ID();
         getPlaylistXML(Get_User_ID());
+        createTimeline();
 	console.log('Finished: loading app.');
         
         $("h2").ajaxError(function(event,request,settings,error){
@@ -248,12 +249,11 @@ function processPlaylistXML(xml){
         $("#timeline").append($(this).text()+i);
         i++;
     });*/
-    Timeline();
 }
 
-function Timeline()
+function createTimeline()
 {
-    console.log('Started: Timeline');
+    console.log('Started: createTimeline');
     console.log(xmlData);
     var timeline = document.getElementById("timeline");
     var ctx = timeline.getContext("2d");
@@ -263,75 +263,38 @@ function Timeline()
     ctx.moveTo(0,100);
     ctx.lineTo(800,100);
     ctx.stroke();
+}
     
-    //Gets the number of entrys out of the database
-    var maxEntrys = 8;
+function createEntries()
+{
     var entrys = TracksAmount();
-    //Creates the various timeline entrys
-    //for(i = 0; i < entrys; i++)
-    var i=0;
-    $(xmlData).find("track").each(function()
+    
+    for(i = 0; i < entrys; i++)
     {
-        console.log("Timeline: each function started");
+        console.log("Started: createEntries");
+        
         var spacing = (800 / entrys) * i;
+        var Entryspacing = (800 / entrys) - 40;
         
         ctx.beginPath();
         ctx.moveTo(spacing,10);
         ctx.lineTo(spacing,100);
         ctx.stroke();
-        var Entryspacing = (800 / entrys) - 40;
         
-        var TrackData = new Array();
-        var track_uri = $(this).find("track_uri").text()
-    m.Track.fromURI("spotify:track:"+track_uri,function(track){
-        TrackData.push(track.name);
-        //TrackData.push(track.artists);
-        TrackData.push(track.album.artist);
-    });
-    console.log("TrackData is "+TrackData[0]);
-        
-        //var trackData = TrackData($(this).find("track_uri").text());
-        var trackName = TrackData[0];
-        var trackArtist = TrackData[1];
-        console.log(trackName+ " in Timeline");
-        console.log(trackArtist+ " in Timeline");
-        // 
-        //var artists = [];
-        //var artistString = "";
-        
-        /*for (j=0;j<trackArtist.length;j++)
-            {
-                artists.push(trackArtist[j].data.name);
-                console.log("FOR ARTISTS "+ artists[j]);
-
-            }
-
-        for (j=0;j<artists.length;j++)
-            {
-                console.log("to artistString "+ artists[j]);
-                artistString += artists[j];
-                if (j!=(artists.length-1))
-                    {
-                        artistString += "<br/>";
-                    }
-            }*/
-
-                
-        $("#timelineEntrys").append('<div class="timelineEntrys">'+
-            trackName + trackArtist
-            //artistString
-            /*$(artists).each(function(){
-                this.toString();
-                console.log("TrackArtist: " +this);
-                //return name;
-            })*/ + '</div>');
+        $("#timelineEntrys").append
+        (
+            '<div class="timelineEntrys">'
+            + trackName + trackArtist + 
+            '</div>'
+        );
+            
         $("#timelineEntrys").add('.timelineEntrys')
                             .css('margin-right', Entryspacing);
+        
         i++;
-        console.log("Timeline: each function stopped");
-        console.log("Timeline: each i :" + i);
-
-    });
+        
+        console.log("createEntries:" + i);
+    }
 }
 
 function TrackData(track_uri){
