@@ -3,7 +3,8 @@ var models = sp.require('sp://import/scripts/api/models');
 var m = sp.require('sp://import/scripts/api/models');
 var player = models.player;
 var v = sp.require("sp://import/scripts/api/views");
-var xmlData;
+var xmlData; // Global var to hold Data
+var trackInfo = []; //Global var to keep track info until it's displayed
 
 $(document).ready(Constructor);
 
@@ -13,7 +14,6 @@ function Constructor(){
 	PlayerRefresh();
 	CurrentSongData();
 	ShowTrackData();
-	Squares();
 	Get_User_ID();
         getPlaylistXML(Get_User_ID());
         createTimeline();
