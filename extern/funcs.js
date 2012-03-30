@@ -244,17 +244,17 @@ function processPlaylistXML(xml){
     console.log("AJAX call finished")
     xmlData = xml;
     var i=0
-    $(xml).find("comment").each(function(){
+    /*$(xml).find("comment").each(function(){
         $("#timeline").append($(this).text()+i);
         i++;
-    });
-    Timeline(xml);
+    });*/
+    Timeline();
 }
 
-function Timeline(xml)
+function Timeline()
 {
     console.log('Started: Timeline');
-    console.log(xml);
+    console.log(xmlData);
     var timeline = document.getElementById("timeline");
     var ctx = timeline.getContext("2d");
     
@@ -270,7 +270,7 @@ function Timeline(xml)
     //Creates the various timeline entrys
     //for(i = 0; i < entrys; i++)
     var i=0;
-    $(xml).find("track").each(function()
+    $(xmlData).find("track").each(function()
     {
         console.log("Timeline: each function started");
         var spacing = (800 / entrys) * i;
@@ -280,17 +280,51 @@ function Timeline(xml)
         ctx.lineTo(spacing,100);
         ctx.stroke();
         var Entryspacing = (800 / entrys) - 40;
-        var trackData = TrackData($(this).find("track_uri").text());
-        var trackName = trackData[0];
-        var trackArtist = trackData [1];
         
+        var TrackData = new Array();
+        var track_uri = $(this).find("track_uri").text()
+    m.Track.fromURI("spotify:track:"+track_uri,function(track){
+        TrackData.push(track.name);
+        //TrackData.push(track.artists);
+        TrackData.push(track.album.artist);
+    });
+    console.log("TrackData is "+TrackData[0]);
+        
+        //var trackData = TrackData($(this).find("track_uri").text());
+        var trackName = TrackData[0];
+        var trackArtist = TrackData[1];
+        console.log(trackName+ " in Timeline");
+        console.log(trackArtist+ " in Timeline");
+        // 
+        //var artists = [];
+        //var artistString = "";
+        
+        /*for (j=0;j<trackArtist.length;j++)
+            {
+                artists.push(trackArtist[j].data.name);
+                console.log("FOR ARTISTS "+ artists[j]);
+
+            }
+
+        for (j=0;j<artists.length;j++)
+            {
+                console.log("to artistString "+ artists[j]);
+                artistString += artists[j];
+                if (j!=(artists.length-1))
+                    {
+                        artistString += "<br/>";
+                    }
+            }*/
+
+                
         $("#timelineEntrys").append('<div class="timelineEntrys">'+
-            trackName +
-            $(trackArtist).each(function(){
-                $.valueOf(this.data.name);
-                console.log("TrackArtist: " +this.data.name);
+            trackName + trackArtist
+            //artistString
+            /*$(artists).each(function(){
+                this.toString();
+                console.log("TrackArtist: " +this);
                 //return name;
-            }) + '</div>');
+            })*/ + '</div>');
         $("#timelineEntrys").add('.timelineEntrys')
                             .css('margin-right', Entryspacing);
         i++;
@@ -304,7 +338,8 @@ function TrackData(track_uri){
     var TrackData = new Array();
     m.Track.fromURI("spotify:track:"+track_uri,function(track){
         TrackData.push(track.name);
-        TrackData.push(track.artists);
+        //TrackData.push(track.artists);
+        TrackData.push(track.album.artist);
     });
     console.log(TrackData);
     return TrackData;
