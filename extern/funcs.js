@@ -275,8 +275,9 @@ function createTimeline()
     
     //Creates the basic timeline
     ctx.beginPath();
-    ctx.moveTo(0,100);
-    ctx.lineTo(800,100);
+    ctx.moveTo(0,50);
+    ctx.lineTo(800,50);
+    ctx.strokeStyle = "#FF3300";
     ctx.stroke();
     TrackData();
 }
@@ -294,11 +295,12 @@ function createEntries()
             console.log("Started: createEntries");
 
             var spacing = (800 / entryMax) * i;
-            var Entryspacing = (800 / entryMax) - 250;
-
+            var Entryspacing = (800 / entryMax) - 150;
+            
             ctx.beginPath();
             ctx.moveTo(spacing,10);
-            ctx.lineTo(spacing,100);
+            ctx.lineTo(spacing,50);
+            ctx.strokeStyle = "#FF3300";
             ctx.stroke();
 
             $("#timelineEntrys").append
