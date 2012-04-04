@@ -32,10 +32,10 @@
         margin-top: 50px;
 }
 
-.timelineEntrys{
+.timelineEntry{
         float: left;
         height: 40px;
-        width: 40px;
+        width: 250px;
 }
 
 .hide{

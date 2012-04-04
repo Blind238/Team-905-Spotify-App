@@ -11,12 +11,25 @@ $(document).ready(Constructor);
 function Constructor(){
 
         console.log('Started: loading app.');
-	PlayerRefresh();
+	//PlayerRefresh();
 	CurrentSongData();
 	ShowTrackData();
 	Get_User_ID();
         getPlaylistXML(Get_User_ID());
         createTimeline();
+        DivEvent();
+        
+        $(".timelineEntry").on('click',function(){
+            //var divID = $(this).id.text()
+            console.log(this.id);
+            console.log(trackInfo[this.id][0]);
+            console.log(trackInfo[this.id][1]);
+            console.log(trackInfo[this.id][2]);
+            //console.log();
+            console.log(trackInfo[this.id][2]);
+            PlayTrack(trackInfo[this.id][2]);
+            });
+        
 	console.log('Finished: loading app.');
         
         $("h2").ajaxError(function(event,request,settings,error){
@@ -111,9 +124,9 @@ function Squares(){
 	}
 }
 
-function PlaySail(uri){
+function PlayTrack(uri){
 	console.log('Started: PlaySail');
-	var uri = 'spotify:track:4VUGq8KUTVv5YnMqU6nkDa';
+	//var uri = 'spotify:track:4VUGq8KUTVv5YnMqU6nkDa';
 	sp.trackPlayer.playTrackFromUri(uri, {
 		onSuccess: function() { console.log("success SONG");} ,
 		onFailure: function () { console.log("failure SONG");},
@@ -271,33 +284,40 @@ function createTimeline()
 function createEntries()
 {
     var entrys = TracksAmount();
+    var entryMax = 5;
     var timeline = document.getElementById("timeline");
     var ctx = timeline.getContext("2d");
+    var i = 0;
     
-    for(i = 0; i < entrys; i++)
+    while (i < 5)
     {
-        console.log("Started: createEntries");
-        
-        var spacing = (800 / entrys) * i;
-        var Entryspacing = (800 / entrys) - 40;
-        
-        ctx.beginPath();
-        ctx.moveTo(spacing,10);
-        ctx.lineTo(spacing,100);
-        ctx.stroke();
-        
-        $("#timelineEntrys").append
-        (
-            '<div class="timelineEntrys">'
-            +  trackInfo[i][0] + trackInfo[i][1] +
-            '</div>'
-        );
+            console.log("Started: createEntries");
+
+            var spacing = (800 / entryMax) * i;
+            var Entryspacing = (800 / entryMax) - 250;
+
+            ctx.beginPath();
+            ctx.moveTo(spacing,10);
+            ctx.lineTo(spacing,100);
+            ctx.stroke();
+
+            $("#timelineEntrys").append
+            (
+                '<div id="' + i + '"class="timelineEntry"><p>'
+                +  trackInfo[i][0] + 
+                '</p><p>'
+                +  trackInfo[i][1] +
+                '</p></div>'
+            );
+
+            $("#timelineEntrys").add('.timelineEntry')
+                                .css('margin-right', Entryspacing);
             
-        $("#timelineEntrys").add('.timelineEntrys')
-                            .css('margin-right', Entryspacing);
-        
-        console.log("createEntries:" + i);
+            i++;
+            
+            console.log("createEntries:" + i)
     }
+    DivEvent();
 }
 
 function TrackData(){
@@ -310,7 +330,7 @@ function TrackData(){
     $(xmlData).find("track").each(function(){
         var track_uri = $(this).find("track_uri").text();
         m.Track.fromURI("spotify:track:"+track_uri,function(track){
-            CheckData(track.name,track.album.artist.name);
+            CheckData(track.name,track.album.artist.name,track.uri);
             //TrackData.push(track.name);
             //TrackData.push(track.artists);
             //TrackData.push(track.album.artist);
@@ -320,8 +340,8 @@ function TrackData(){
     //return TrackData;
 }
 
-function CheckData(track,artist){
-    var temp = [track,artist];
+function CheckData(track,artist,uri){
+    var temp = [track,artist,uri];
     trackInfo.push(temp);
     console.log("trackInfo.length == " + trackInfo.length);
     console.log("pushing " + temp);
@@ -341,6 +361,19 @@ function TracksAmount(){
     })
     console.log("TracksAmount returns: "+i);
     return i;
+}
+
+function DivEvent(){
+    $(".timelineEntry").on('click',function(){
+            //var divID = $(this).id.text()
+            console.log(this.id);
+            console.log(trackInfo[this.id][0]);
+            console.log(trackInfo[this.id][1]);
+            console.log(trackInfo[this.id][2]);
+            //console.log();
+            console.log(trackInfo[this.id][2]);
+            PlayTrack(trackInfo[this.id][2]);
+            });
 }
 
 function HelpMe(){
