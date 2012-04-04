@@ -11,10 +11,10 @@ $(document).ready(Constructor);
 function Constructor(){
 
         console.log('Started: loading app.');
-	PlayerRefresh();
-	CurrentSongData();
+	//PlayerRefresh();
+	//CurrentSongData();
 	ShowTrackData();
-	Get_User_ID();
+	//Get_User_ID();
         getPlaylistXML(Get_User_ID());
         createTimeline();
 	console.log('Finished: loading app.');
@@ -53,21 +53,21 @@ function CreatePlaylist(){
 	}
 }
 
-function Test(){
+/*function Test(){
 	console.log('Started: Test');
-}
+}*/
 
-function CurrentSongData(){
+/*function CurrentSongData(){
 	console.log('Started: CurrentSongData');
 	var PlayerTrackInfo = player.track;
 	var Track = PlayerTrackInfo.data;
-}
+}*/
 
-function CurrentPlaylist(){
+/*function CurrentPlaylist(){
 	console.log('Started: CurrentPlaylist');
 	nummers[i] = array[i].data.uri;
 	console.log("nummers: " +nummers);
-}
+}*/
 
 function ReloadPage(){
 	console.log('Started: ReloadPage');
@@ -111,7 +111,7 @@ function Squares(){
 	}
 }
 
-function PlaySail(uri){
+/*function PlaySail(uri){
 	console.log('Started: PlaySail');
 	var uri = 'spotify:track:4VUGq8KUTVv5YnMqU6nkDa';
 	sp.trackPlayer.playTrackFromUri(uri, {
@@ -119,9 +119,8 @@ function PlaySail(uri){
 		onFailure: function () { console.log("failure SONG");},
 		onComplete: function () { console.log("complete SONG"); }
     });
-	
-}
 
+}*/
 function Get_User_ID(){
 	
 	console.log('Started: Get_User_ID');
@@ -134,10 +133,10 @@ function Get_User_ID(){
 function Constructor_Playlist(){
 	
 	console.log('Started playlist constructor.');
-	GetPlaylist();
-	GetTracksPlaylist();
-	AddPlaylist();
-	RemoveTracks();
+	//GetPlaylist();
+	//GetTracksPlaylist();
+	//AddPlaylist();
+	//RemoveTracks();
 	AddTracks();
 	console.log('Finished playlist constructor.');
 }
@@ -157,12 +156,12 @@ function AddPlaylist(){
 	console.log('Playlist added to account');
 }
 
-function GetTracksPlaylist(){
-	
+/*function GetTracksPlaylist(){
+
 	console.log('Started: GetTracksPlaylist');
 	var Playlist = GetPlaylist();
 	var Tracks = Playlist.tracks;
-}
+}*/
 
 function RemoveTracks(){
 	console.log('Started: RemoveTracks');
@@ -256,7 +255,7 @@ function processPlaylistXML(xml){
 function createTimeline()
 {
     console.log('Started: createTimeline');
-    console.log(xmlData);
+    //console.log(xmlData);
     var timeline = document.getElementById("timeline");
     var ctx = timeline.getContext("2d");
     
