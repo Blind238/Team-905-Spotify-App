@@ -344,7 +344,14 @@ function TracksAmount(){
 }
 
 function HelpMe(){
-	
-	
-	
+
+    console.log("Started: HelpMe");
+
+    var item = document.getElementById("foo");
+    if(item.style.visibility == 'visible') {
+        item.style.visibility = 'hidden';
+    } else {
+        item.style.visibility = 'visible';
+    }
+
 }
