@@ -36,9 +36,11 @@
         float: left;
         height: 50px;
         width: 150px;
-        border-width: 1px;
-        border-style: solid;
-        border-color: #FF9900;
+        background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FF9900), to(#FF3300));   /* Safari 4-5, Chrome 1-9 */
+   	background: -webkit-linear-gradient(top, #FF9900, #FF3300);                         /* Safari 5.1, Chrome 10+ */
+        border: 1px solid;
+        border-radius: 5px;
+        text-align: center;
 }
 
 .hide{
