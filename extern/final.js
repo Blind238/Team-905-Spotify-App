@@ -79,7 +79,7 @@ function Squares(){
 }
 
 function PlayTrack(uri){
-	console.log('Started: PlaySail');
+	console.log('Started: PlayTrack');
 	//var uri = 'spotify:track:4VUGq8KUTVv5YnMqU6nkDa';
 	sp.trackPlayer.playTrackFromUri(uri, {
 		onSuccess: function() { console.log("success SONG");} ,
