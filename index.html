@@ -3,38 +3,47 @@
     <head>
         <meta charset="utf-8">
         <title>ULTify</title>
-        <link rel="stylesheet" href="sp://import/css/adam.css">
+        <!-- <link rel="stylesheet" href="sp://import/css/adam.css"> -->
         <link rel="stylesheet" href="extern/main.css">
         <script type="text/javascript" src="extern/jquery-1.7.1.js"></script>
-        <script type="text/javascript" src="extern/final.js"></script>
+        <script type="text/javascript" src="extern/funcs.js"></script>
+        <script type="text/javascript" src="extern/buttons.js"></script>
     </head>
     <body>
-        <h2>tester</h2><BR />
-        <div class="button" id="AddToTimeline">
+        <h1>U Liked Then Spotify App</h1>
+        <h2>Er speelt momenteel geen nummer.</h2>
+        
+        <div class="button mainButton" id="AddToTimeline">
             <p>
                 + Add To Timeline
             </p>
         </div>
-        <div class="button" id="PlayTimeline">
+        <div class="button mainButton" id="PlayTimeline">
             <p>
                 &gt; Play Timeline
             </p>
         </div>
-        
-        <input type='button' value='Play song' onClick='PlaySail()'><BR />
-        <input type='button' value='Reload Page' onClick='ReloadPage()'><BR />
-        
+                
         <canvas id="canvas" width="900" height="300"></canvas><br>
         
-        <form class="hide">
-            <textarea></textarea>
-            <div class="button" id="SubButton">
+        <form class="form hide">
+            <p>
+                Add a comment:
+            </p>
+            <textarea rows="5" cols="40"></textarea>
+            <br />
+            <div class="button formButton" id="SubButton">
                 <p>
                     Submit
                 </p>
             </div>
+            <div class="button formButton" id="Cancel">
+                <p>
+                    Cancel
+                </p>
+            </div>
         </form>
-        
-        <canvas id="timeline" width="900" height="100"></canvas>
+        <div id="timelineEntrys"></div>
+        <canvas id="timeline" width="800" height="100"></canvas>
     </body>
 </html>
