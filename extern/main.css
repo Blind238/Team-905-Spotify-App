@@ -36,6 +36,9 @@
         float: left;
         height: 50px;
         width: 150px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: #FF9900;
 }
 
 .hide{
@@ -53,6 +56,7 @@ h2{
         font-weight: 100;
         font-size: 16px;
         font-family: Arial, Helvetica, sans-serif;
+        color: #FFFFFF;
 }
 
 p{
