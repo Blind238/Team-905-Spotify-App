@@ -276,6 +276,7 @@ function createTimeline()
     ctx.beginPath();
     ctx.moveTo(0,50);
     ctx.lineTo(800,50);
+    ctx.lineWidth = 5;
     ctx.strokeStyle = "#FF3300";
     ctx.stroke();
     TrackData();
@@ -297,8 +298,9 @@ function createEntries()
             var Entryspacing = (800 / entryMax) - 150;
             
             ctx.beginPath();
-            ctx.moveTo(spacing,10);
+            ctx.moveTo(spacing,0);
             ctx.lineTo(spacing,50);
+            ctx.lineWidth = 5;
             ctx.strokeStyle = "#FF3300";
             ctx.stroke();
 
