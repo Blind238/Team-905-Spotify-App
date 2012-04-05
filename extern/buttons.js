@@ -5,6 +5,9 @@ function Constructor()
     AddToTimeline();
     PlayTimeline();
     SubButton();
+    Cancel();
+    
+    
 }
 
 function AddToTimeline()
@@ -56,6 +59,18 @@ function PlayTimeline()
     $("#PlayTimeline").click(function()
         {
              console.log('Started: PlayTimeline');
-             Constructor_Playlist()
+             Constructor_Playlist();
+        });
+}
+
+function Cancel()
+{
+    $("#Cancel").click(function()
+        {
+            console.log('Started: Cancel');
+            $("#canvas").show();
+            $("#timeline").show();
+            $("#timelineEntrys").show();
+            $("form").hide();
         });
 }
