@@ -36,6 +36,9 @@
         float: left;
         height: 50px;
         width: 150px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: #FF9900;
 }
 
 .hide{
