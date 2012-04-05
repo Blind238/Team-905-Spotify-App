@@ -194,11 +194,12 @@ function createEntries()
     {
             
             var spacing = (800 / entryMax) * i;
-            var Entryspacing = (800 / entryMax) - 250;
+            var Entryspacing = (800 / entryMax) - 150;
 
             ctx.beginPath();
             ctx.moveTo(spacing,10);
-            ctx.lineTo(spacing,100);
+            ctx.lineTo(spacing,50);
+            ctx.strokeStyle = "#FF3300";
             ctx.stroke();
 
             $("#timelineEntrys").append
